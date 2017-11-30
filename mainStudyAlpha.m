@@ -16,8 +16,9 @@ valuesObj2 = [];
 
 h = waitbar(0,'Computing the solutions...');
 steps = (1/dA)*130;
+t = cputime
 while (alpha <= 1)
-    [valueObj, valueObj1, valueObj2] = studyAlpha(alpha, dA, steps, cputime);
+    [valueObj, valueObj1, valueObj2] = studyAlpha(alpha, dA, steps, t);
     
     valuesAlpha = [valuesAlpha alpha];
     valuesObj = [valuesObj valueObj];
