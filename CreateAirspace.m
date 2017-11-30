@@ -17,7 +17,7 @@ function Airspace= CreateAirspace(fNavWpts,fAirways,fFir,fAC)
 
 k=1;
 lon0 = 2; 
-figure
+%figure
 while (~feof(fileID))
     tline = fgetl(fileID);
   i=1;
@@ -39,7 +39,7 @@ while (~feof(fileID))
   lonn=extractLatLon(lon);
   [x,y] = mercatorProjection([latn,lonn],lon0);
   hold on
-  plot(x,y,'r.','MarkerSize',12);
+  %%plot(x,y,'r.','MarkerSize',12);
   text(x+8,y,id,'HorizontalAlignment','left','fontsize',8)
   axis equal
   wpt=struct('id',id,'pos',[round(x*1e3)/1e3,round(y*1e3)/1e3]);
@@ -70,7 +70,7 @@ while (~feof(fileID))
   seg=createSegment(origin,destination,wpts);
   hold on
   if(seg.A(1)~=0 && seg.B(1)~=0)  
-    plot([seg.A(1),seg.B(1)], [seg.A(2), seg.B(2)],'c-','MarkerSize',12)
+    %%plot([seg.A(1),seg.B(1)], [seg.A(2), seg.B(2)],'c-','MarkerSize',12)
   else
     disp(origin);
     disp(destination);
@@ -89,7 +89,7 @@ for i = 1:size(arw,2)
         if i ~= j
             inter = intersectSegments(arw(1,i),arw(1,j));
             if size(inter,2)==2;
-                plot(inter(1),inter(2),'bx','MarkerSize',8)
+                %plot(inter(1),inter(2),'bx','MarkerSize',8)
                 intervec = [intervec; inter];
             end
         end
@@ -118,7 +118,7 @@ while (~feof(fileID))
   seg=createSegment(origin,destination,wpts);
   hold on
   if(seg.A(1)~=0 && seg.B(1)~=0)  
-    plot([seg.A(1),seg.B(1)], [seg.A(2), seg.B(2)],'k-')
+    %plot([seg.A(1),seg.B(1)], [seg.A(2), seg.B(2)],'k-')
   else
     disp(origin);
     disp(destination);
@@ -154,7 +154,7 @@ while (~feof(fileID))
 
   [x,y] = mercatorProjection([latn,lonn],lon0);
   %hold on
-  %plot(x,y,'m+','MarkerSize',12);
+  %%plot(x,y,'m+','MarkerSize',12);
   %text(x+8,y,id,'HorizontalAlignment','left','fontsize',8)
   %axis equal
   ACs(k, 1:2)=[x,y];  
@@ -167,7 +167,7 @@ ACs=round(ACs*1e3)./1e3;
 IN=inpolygon(ACs(:,1),ACs(:,2),firpoly(:,1),firpoly(:,2));
 I=find(IN);
 ACs1=ACs(I,:);
-plot(ACs1(:,1),ACs1(:,2),'r+','MarkerSize',14);
+%plot(ACs1(:,1),ACs1(:,2),'r+','MarkerSize',14);
 
 %% CALCULATE THE BOUNDARIES OF YOUR DOMAIN AND THE FICTION POINTS FOR VORONOI
 for i = 1:size(fir,2)
@@ -187,7 +187,7 @@ for i = 1:size(fir,2)
     for j = 1:size(arw,2)
         int= intersectSegments(fir(1,i),arw(1,j));
         if size(int,2)==2;
-           plot(int(1),int(2),'ms','MarkerSize',5)
+           %plot(int(1),int(2),'ms','MarkerSize',5)
            interfir = [interfir; int];
         end
     end

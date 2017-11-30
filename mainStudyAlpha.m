@@ -14,8 +14,10 @@ valuesObj = [];
 valuesObj1 = [];
 valuesObj2 = [];
 
+h = waitbar(0,'Computing the solutions...');
+steps = (1/dA)*130;
 while (alpha <= 1)
-    [valueObj, valueObj1, valueObj2] = studyAlpha(alpha);
+    [valueObj, valueObj1, valueObj2] = studyAlpha(alpha, dA, steps, cputime);
     
     valuesAlpha = [valuesAlpha alpha];
     valuesObj = [valuesObj valueObj];
@@ -36,7 +38,7 @@ figure(2)
 loglog(valuesObj1,valuesObj2,'x');
 title('Obj1 vs Obj2 '); xlabel('Obj1'); ylabel('Obj2');
 
-function [valueObj, valueObj1, valueObj2] = studyAlpha(alpha) 
+function [valueObj, valueObj1, valueObj2] = studyAlpha(alpha, dA, steps, t) 
     %SECTION 2: CREATE THE AIRSPACE: output: airways, int points of arw, int points arw/FIR
     fNavWpts='NavWpts.dat'; % airspace waypoints
     fAirways='Airways.dat'; % definition of airways
@@ -46,11 +48,11 @@ function [valueObj, valueObj1, valueObj2] = studyAlpha(alpha)
 
     %SECTION 3: GENETIC ALGORITHM SOLUTION
     % Parameters of the Genetic Algorithm
-    NIND = 50                  % Number of individuals per subpopulations          !!FIX!!
-    MAXGEN = 130                % maximum Number of generations                     !!FIX!!
-    GGAP = 0.8                  % Generation gap, how many new individuals are created !!FIX!!
-    NSECT = 3   	         % Number of sectors                                 !!FIX!!
-    NVAR = NSECT*2               % Number of variables                               !!FIX!!
+    NIND = 50;                  % Number of individuals per subpopulations          !!FIX!!
+    MAXGEN = 130;                % maximum Number of generations                     !!FIX!!
+    GGAP = 0.8;                  % Generation gap, how many new individuals are created !!FIX!!
+    NSECT = 3;   	         % Number of sectors                                 !!FIX!!
+    NVAR = NSECT*2;               % Number of variables                               !!FIX!!
     PRECI = 20;              % Precision of binary representation              
 
     % Build field descriptor
@@ -97,11 +99,13 @@ function [valueObj, valueObj1, valueObj2] = studyAlpha(alpha)
 
         % Update display and record current best individual
            Best(gen+1) = min(ObjV);
-           semilogy(Best,'ro'); xlabel('Number of generations'); ylabel('Objective function value (Best)');
-           text(0.5,0.95,['Best = ', num2str(Best(gen+1))],'Units','normalized');
-           drawnow;
+           %semilogy(Best,'ro'); xlabel('Number of generations'); ylabel('Objective function value (Best)');
+           %text(0.5,0.95,['Best = ', num2str(Best(gen+1))],'Units','normalized');
+           %drawnow;
          %disp('END GENERATION')
-         sprintf('Generation number: %d', gen)
+         waitbar(((alpha/dA)*gen) / steps);
+         
+         sprintf('Alpha: %.2f / Generation number: %d / Progress: %.3f / Time: %d', alpha, gen, (((alpha/dA)*gen) / steps), cputime-t)
        end 
     % End of GA
     

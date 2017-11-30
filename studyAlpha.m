@@ -41,11 +41,11 @@ function [] = studyAlpha(alpha)
        ObjV = objFunctionWorkloadSectoring(bs2rv(Chrom,FieldD),Airspace, alpha);       % open and check
 
     % Track best individual and display convergence
-       figure
+       %figure
        Best(gen+1) = min(ObjV);
-       plot(Best,'ro');xlabel('Number of generations'); ylabel('Objective function value (Best)');
-       text(0.5,0.95,['Best = ', num2str(Best(gen+1))],'Units','normalized');   
-       drawnow;       
+       %plot(Best,'ro');xlabel('Number of generations'); ylabel('Objective function value (Best)');
+       %text(0.5,0.95,['Best = ', num2str(Best(gen+1))],'Units','normalized');   
+       %drawnow;       
 
     % Generational loop
        while gen < MAXGEN,
@@ -73,9 +73,9 @@ function [] = studyAlpha(alpha)
 
         % Update display and record current best individual
            Best(gen+1) = min(ObjV);
-           semilogy(Best,'ro'); xlabel('Number of generations'); ylabel('Objective function value (Best)');
-           text(0.5,0.95,['Best = ', num2str(Best(gen+1))],'Units','normalized');
-           drawnow;
+           %semilogy(Best,'ro'); xlabel('Number of generations'); ylabel('Objective function value (Best)');
+           %text(0.5,0.95,['Best = ', num2str(Best(gen+1))],'Units','normalized');
+           %drawnow;
          %disp('END GENERATION')
          sprintf('Generation number: %d', gen)
        end 

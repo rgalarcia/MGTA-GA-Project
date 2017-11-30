@@ -45,7 +45,7 @@ PRECI = 20;              % Precision of binary representation
 % Track best individual and display convergence
    figure
    Best(gen+1) = min(ObjV);
-   plot(Best,'ro');xlabel('Number of generations'); ylabel('Objective function value (Best)');
+   %plot(Best,'ro');xlabel('Number of generations'); ylabel('Objective function value (Best)');
    text(0.5,0.95,['Best = ', num2str(Best(gen+1))],'Units','normalized');   
    drawnow;       
 
