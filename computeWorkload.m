@@ -3,8 +3,8 @@ function WL=computeWorkload(nFirIntersec, nAirwaysIntersec, nTransfer, LengthAir
            
                         
 % Weight for each cost
-a1 = 6/TotalFirIntersec; a2 = 8/TotalAWYIntersec;
-a3 = 5/TotalnTransfer;   a4 = 1/TotalLengthAWY;          % THINK OF RELATIVE WEIGHT OF THESE COSTS AND FIX!
+a1 = 11/TotalFirIntersec; a2 = 14/TotalAWYIntersec;
+a3 = 10/TotalnTransfer;   a4 = 8/TotalLengthAWY;          % THINK OF RELATIVE WEIGHT OF THESE COSTS AND FIX!
 
 % Weighted sum of complexity of each sector (airspace-based workload)
                    

@@ -7,7 +7,7 @@ addpath gatoolbox
 % addpath data
 
 alpha = 0;
-dA = 0.05;
+dA = 0.025;
 
 valuesAlpha = [];
 valuesObj = [];
