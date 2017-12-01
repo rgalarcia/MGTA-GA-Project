@@ -20,19 +20,9 @@ t = cputime;
 numpoints = (1/dA);
 parfor i = 1:numpoints+1
     [valuesObj(i), valuesObj1(i), valuesObj2(i)] = studyAlpha((i-1)*dA,dA,steps,cputime);
+    valuesAlpha(i) = (i-1)*dA;
 end
-
-figure(1)
-semilogy(valuesAlpha, valuesObj1, 'ro-');
-hold on;
-semilogy(valuesAlpha, valuesObj2, 'bo-');
-title('Obj1 & Obj2 vs Value of alpha'); xlabel('Value of alpha (\alpha)'); ylabel('Value of the function');
-legend('Obj1','Obj2')
-hold off;
-
-figure(2)
-loglog(valuesObj1,valuesObj2,'x');
-title('Obj1 vs Obj2 '); xlabel('Obj1'); ylabel('Obj2');
+plots (valuesAlpha,valuesObj1,valuesObj2)
 
 function [valueObj, valueObj1, valueObj2] = studyAlpha(alpha, dA, steps, t) 
     %SECTION 2: CREATE THE AIRSPACE: output: airways, int points of arw, int points arw/FIR
@@ -41,7 +31,7 @@ function [valueObj, valueObj1, valueObj2] = studyAlpha(alpha, dA, steps, t)
     fFir='FIR.dat'; % definition of FIR
     fAC='LatLon-FIR-FL300up-filt-1155-1210.dat'; % traffic data
     Airspace= CreateAirspace(fNavWpts,fAirways,fFir,fAC);
-    NAC = size(Airspace.AicraftCount,1);
+    NAC = size(Airspace.AircraftCount,1);
 
     %SECTION 3: GENETIC ALGORITHM SOLUTION
     % Parameters of the Genetic Algorithm

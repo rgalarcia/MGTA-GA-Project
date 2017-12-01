@@ -38,10 +38,10 @@ while (~feof(fileID))
   latn=extractLatLon(lat);
   lonn=extractLatLon(lon);
   [x,y] = mercatorProjection([latn,lonn],lon0);
-  hold on
+%   hold on
   %%plot(x,y,'r.','MarkerSize',12);
-  text(x+8,y,id,'HorizontalAlignment','left','fontsize',8)
-  axis equal
+%   text(x+8,y,id,'HorizontalAlignment','left','fontsize',8)
+%   axis equal
   wpt=struct('id',id,'pos',[round(x*1e3)/1e3,round(y*1e3)/1e3]);
   wpts(k)=wpt;  
   
