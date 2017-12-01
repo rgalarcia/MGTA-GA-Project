@@ -14,7 +14,6 @@ valuesObj = [];
 valuesObj1 = [];
 valuesObj2 = [];
 
-h = waitbar(0,'Computing the solutions...');
 steps = (1/dA)*130;
 t = cputime;
 
@@ -22,18 +21,6 @@ numpoints = (1/dA);
 parfor i = 1:numpoints+1
     [valuesObj(i), valuesObj1(i), valuesObj2(i)] = studyAlpha((i-1)*dA,dA,steps,cputime);
 end
-
-%{
-while (alpha <= 1)
-    [valueObj, valueObj1, valueObj2] = studyAlpha(alpha, dA, steps, t);
-    
-    valuesAlpha = [valuesAlpha alpha];
-    valuesObj = [valuesObj valueObj];
-    valuesObj1 = [valuesObj1 valueObj1];
-    valuesObj2 = [valuesObj2 valueObj2];
-    alpha = alpha + dA;
-end
-%}
 
 figure(1)
 semilogy(valuesAlpha, valuesObj1, 'ro-');
@@ -112,9 +99,8 @@ function [valueObj, valueObj1, valueObj2] = studyAlpha(alpha, dA, steps, t)
            %text(0.5,0.95,['Best = ', num2str(Best(gen+1))],'Units','normalized');
            %drawnow;
          %disp('END GENERATION')
-         waitbar(((alpha/dA)*gen) / steps);
          
-         sprintf('Alpha: %.2f / Generation number: %d / Progress: %.3f / Time: %d', alpha, gen, (((alpha/dA)*gen) / steps), int16(cputime-t))
+         sprintf('Alpha: %.3f / Generation number: %d / Progress: %.1f / Time: %d s', alpha, gen, (gen/MAXGEN)*100, int16(cputime-t))
        end 
     % End of GA
     
