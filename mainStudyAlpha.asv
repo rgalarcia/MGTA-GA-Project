@@ -18,9 +18,12 @@ h = waitbar(0,'Computing the solutions...');
 steps = (1/dA)*130;
 t = cputime;
 
-numpoints = (1/dA);
-parfor i = 1:numpoints+1
-    [valuesObj(i), valuesObj1(i), valuesObj2(i)] = studyAlpha((i-1)*dA,dA,steps,cputime);
+numpoints = 40;
+parfor (i = 1:10
+    [valuesObj(i), valuesObj1(i), valuesObj2(i)] = studyAlpha(0,0.05,0.2,785);
+    alpha = alpha + dA;
+    %a(i) = studyAlpha(alpha, dA, steps, t);
+    
 end
 
 %{
