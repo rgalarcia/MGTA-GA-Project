@@ -41,13 +41,14 @@ function [valueObj, valueObj1, valueObj2] = studyAlpha(alpha, dA, steps, t)
     fFir='FIR.dat'; % definition of FIR
     fAC='LatLon-FIR-FL300up-filt-1155-1210.dat'; % traffic data
     Airspace= CreateAirspace(fNavWpts,fAirways,fFir,fAC);
+    NAC = size(Airspace.AicraftCount,1);
 
     %SECTION 3: GENETIC ALGORITHM SOLUTION
     % Parameters of the Genetic Algorithm
     NIND = 50;                  % Number of individuals per subpopulations          !!FIX!!
     MAXGEN = 130;                % maximum Number of generations                     !!FIX!!
     GGAP = 0.8;                  % Generation gap, how many new individuals are created !!FIX!!
-    NSECT = 3;   	         % Number of sectors                                 !!FIX!!
+    NSECT = max(2,ceil(NAC/15));   	         % Number of sectors                                 !!FIX!!
     NVAR = NSECT*2;               % Number of variables                               !!FIX!!
     PRECI = 20;              % Precision of binary representation              
 
